@@ -1,0 +1,7 @@
+{
+  "name": "Pointing Game",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

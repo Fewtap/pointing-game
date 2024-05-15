@@ -1,0 +1,19 @@
+.center{
+    margin-inline: auto;
+}
+
+.center{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fillhor{
+    width: 80%;
+}
+
+ion-card {
+    border-radius:30px !important;
+    }
