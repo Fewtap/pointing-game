@@ -29,13 +29,13 @@ const Tab1: React.FC = () => {
             <IonContent fullscreen>
                 <div className="container">
                     {keys.map((key, index) => {
-                        return (
-                            <IonButton key={key} onClick={() => sendHistory(key)}>
-                                {key}
-                            </IonButton>
-                        )
-                    }
-                    )}
+    const newKey = key.toLowerCase().replace("most likely to questions", "");
+    return (
+        <IonButton key={newKey} onClick={() => sendHistory(newKey)}>
+            {newKey}
+        </IonButton>
+    )
+})}
                 </div>
             </IonContent>
         </IonPage>
