@@ -1,18 +1,15 @@
-.center{
-    margin-inline: auto;
-}
-
-.center{
-    height: 100%;
+.container{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    
+
 }
 
-.fillhor{
-    width: 80%;
-}
 
 ion-card {
     border-radius:30px !important;

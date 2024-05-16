@@ -74,7 +74,16 @@ const WIML: React.FC = () => {
                 <IonToolbar>
                     <div className="flex">
                         <IonBackButton mode="md" />
-                        <IonTitle>{game == "WIML" ? "Who is more likely " + type : game == "NHIE" ? "Never have i ever " + type : ""}</IonTitle>
+                        <IonTitle
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            
+                            fontSize: "0.8em",
+            
+                        
+                        }}
+                        >{game == "WIML" ?  type : game == "NHIE" ? "Never have i ever " + type : ""}</IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>

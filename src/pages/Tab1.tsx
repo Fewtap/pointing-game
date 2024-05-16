@@ -20,7 +20,10 @@ const Tab1: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Who Is More Likely</IonTitle>
+                    <IonTitle style={{
+                        
+                    
+                    }}>Who Is More Likely</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>

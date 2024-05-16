@@ -7,16 +7,56 @@ const Tab3: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 3</IonTitle>
+          <IonTitle>About</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 9</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
+        <div
+        style={{
+          width: '50%',
+          borderRadius: '50%',
+          margin: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100%',
+          flexDirection: 'column',
+        }}  
+        >
+          <img style={{
+            borderRadius: '50%',
+          }} src='https://static.vecteezy.com/system/resources/previews/010/965/137/original/toast-beer-drinks-free-vector.jpg'></img>
+          <h1>About Page</h1>
+          <p>This is a simple app that allows you to play a couple of drinking games with your friends.</p>
+          <h5>Thanks to:</h5>
+          <ul
+          style={{
+            listStyleType: 'none',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            padding: '0',
+
+          }}
+          >
+            <li>Juli</li>
+            <li>Wouter</li>
+            <li>Ionic</li>
+            <li>Typescript</li>
+            <li>React</li>
+            </ul>
+
+            <p
+            style={{
+              
+              textAlign: 'center',
+              fontSize: '0.8em',
+              color: 'grey',
+            
+            }}
+            >Made by: Fewtap</p>
+          </div>
       </IonContent>
     </IonPage>
   );

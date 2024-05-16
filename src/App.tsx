@@ -54,13 +54,13 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
+          <Route exact path="/WhoIsMoreLikely">
             <Tab1 />
           </Route>
-          <Route exact path="/tab2">
+          <Route exact path="/NeverHaveIEver">
             <Tab2 />
           </Route>
-          <Route path="/tab3">
+          <Route path="/about">
             <Tab3 />
           </Route>
           <Route exact path="/WIML">
@@ -69,25 +69,22 @@ const App: React.FC = () => (
           <Route exact path={["/:game/:type", "/WIML"]}>
             <WIML />
           </Route>
-          <Route exact path={["/NHIE/:game/:type"]}>
-            <NHIE />
-          </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/WhoIsMoreLikely" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="tab1" href="/WhoIsMoreLikely">
             <IonIcon aria-hidden="true" icon={triangle} />
             <IonLabel>Who is More Likely</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab2" href="/NeverHaveIEver">
             <IonIcon aria-hidden="true" icon={ellipse} />
             <IonLabel>Never Have I Ever</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="tab3" href="/About">
             <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonLabel>About</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
