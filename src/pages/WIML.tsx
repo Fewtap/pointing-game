@@ -2,22 +2,43 @@ import { IonBackButton, IonCard, IonCardContent, IonContent, IonHeader, IonPage,
 import './WIML.css';
 import { Question } from "../interfaces";
 import questionsData from '../questions.json';
+import NHIEQuestions from '../NHIE.json';
 import { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 
 const WIML: React.FC = () => {
-    const location = useLocation<{ type?: string }>(); // Optional type
     const cardEl = useRef<HTMLIonCardElement | null>(null);
-    const [filteredQuestions, setFilteredQuestions] = useState<Question[]>([]);
+    const [filteredQuestions, setFilteredQuestions] = useState<Question[] | string[]>([]);
     const [questionIndex, setQuestionIndex] = useState(0);
 
-    useEffect(() => {
-        // Check if type is available in location state
-        if (location.state?.type) {
-            const filtered = questionsData.items.filter(q => q.category.includes(location.state.type!));
-            setFilteredQuestions(filtered);
+    const { type, game } = useParams<{ type?: string, game?: string }>();
+
+    function shuffleArray(array: any[]) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-    }, [location.state]);
+    }
+
+    useEffect(() => {
+    if (game === "WIML") {
+        if (type) {
+            let filteredQuestions = questionsData.items.filter(question => question.category.includes(type));
+            shuffleArray(filteredQuestions);
+            setFilteredQuestions(filteredQuestions);
+        } else {
+            setFilteredQuestions([]);
+        }
+    } else if (game === "NHIE") {
+        if (type && typeof type === 'string') {
+            let filteredQuestions = NHIEQuestions.neverHaveIEverQuestions[type as keyof typeof NHIEQuestions.neverHaveIEverQuestions] || [];
+            shuffleArray(filteredQuestions);
+            setFilteredQuestions(filteredQuestions);
+        } else {
+            setFilteredQuestions([]);
+        }
+    }
+}, [type, game]);
 
     const nextQuestion = () => {
         const hideAnim = createAnimation()
@@ -43,28 +64,45 @@ const WIML: React.FC = () => {
                 <IonToolbar>
                     <div className="flex">
                         <IonBackButton mode="md" />
-                        <IonTitle>{`WIML ${location.state?.type ?? 'Default'}`}</IonTitle>
+                        <IonTitle>{`WIML ${type ?? 'Default'}`}</IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen style={{
-                display: "flex !important",
-                justifyContent: "center !important",
-                alignContent: "center !important",
-                alignItems: "center !important",
-                flexDirection: "column !important",
-                height: "100% !important"
-            
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                height: "100%"
             }}>
                 {filteredQuestions.length > 0 ? (
-                    <div style={{display: "flex", flexDirection:"column", width:"80%", justifyContent: "center", alignContent:"center", marginInline:"auto"}}>
-                    <IonCard ref={cardEl}>
-                        <IonCardContent>
-                            <h1>{filteredQuestions[questionIndex].content}</h1>
-                            
-                        </IonCardContent>
-                    </IonCard>
-                    <IonButton onClick={nextQuestion}>Next Question</IonButton>
+                    <div style={{display: "flex", flexDirection:"column", width:"80%", marginInline:"auto", height: "80%"}}>
+                        <IonCard ref={cardEl} style={{
+                            width: "100%",
+                            maxWidth: "100%",
+                            minHeight: "50%",
+                            maxHeight: "50%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignContent: "center",
+                            alignItems: "center",
+                            flexDirection: "column",
+                            margin: "auto",
+                            padding: "1rem",
+                            borderRadius: "1rem",
+                            boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                            textAlign: "center",
+                            transition: "all 0.3s ease-in-out",
+                        }}>
+                            <IonCardContent>
+                                <h1>{typeof filteredQuestions[questionIndex] === 'string' 
+                                    ? filteredQuestions[questionIndex] 
+                                    : filteredQuestions[questionIndex].content}
+                                </h1>
+                            </IonCardContent>
+                        </IonCard>
+                        <IonButton onClick={nextQuestion}>Next Question</IonButton>
                     </div>
                 ) : (
                     <div>No questions available for this category.</div>

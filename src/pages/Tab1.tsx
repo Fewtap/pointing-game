@@ -2,13 +2,14 @@ import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from 
 import './Tab1.css';
 import { useHistory } from 'react-router';
 
+
 const Tab1: React.FC = () => {
     const history = useHistory();
 
     function sendHistory(type: string) {
         history.push({
-            pathname: "/WIML",
-            state: { type: type }
+            pathname: "WIML" + "/" + type, 
+            
         });
     }
 
@@ -16,7 +17,7 @@ const Tab1: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>WIML</IonTitle>
+                    <IonTitle>Who Is More Likely</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
