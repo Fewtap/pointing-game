@@ -31,7 +31,7 @@ const Tab1: React.FC = () => {
                     {keys.map((key, index) => {
     const newKey = key.toLowerCase().replace("most likely to questions", "");
     return (
-        <IonButton key={newKey} onClick={() => sendHistory(newKey)}>
+        <IonButton key={newKey} onClick={() => sendHistory(key)}>
             {newKey}
         </IonButton>
     )

@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package io.macke.drinkinggame;
 
 import com.getcapacitor.BridgeActivity;
 
