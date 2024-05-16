@@ -2,6 +2,7 @@ import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
+  IonImg,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -10,7 +11,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { beerOutline, ellipse, searchCircleOutline, skullOutline, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -75,17 +76,18 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/WhoIsMoreLikely">
-            <IonIcon aria-hidden="true" icon={triangle} />
+            <IonIcon aria-hidden="true" icon={searchCircleOutline} />
             <IonLabel>Who is More Likely</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/NeverHaveIEver">
-            <IonIcon aria-hidden="true" icon={ellipse} />
+            <IonIcon aria-hidden="true" icon={skullOutline} />
             <IonLabel>Never Have I Ever</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/About">
-            <IonIcon aria-hidden="true" icon={square} />
+            <IonIcon aria-hidden="true" icon={beerOutline} />
             <IonLabel>About</IonLabel>
           </IonTabButton>
+          
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>

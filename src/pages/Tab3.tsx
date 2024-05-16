@@ -24,8 +24,9 @@ const Tab3: React.FC = () => {
         }}  
         >
           <img style={{
+            height: '25%',
             borderRadius: '50%',
-          }} src='https://static.vecteezy.com/system/resources/previews/010/965/137/original/toast-beer-drinks-free-vector.jpg'></img>
+          }} src='../resources/icon.png'></img>
           <h1>About Page</h1>
           <p>This is a simple app that allows you to play a couple of drinking games with your friends.</p>
           <h5>Thanks to:</h5>
