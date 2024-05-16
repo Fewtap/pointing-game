@@ -1,10 +1,13 @@
 import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './Tab1.css';
 import { useHistory } from 'react-router';
+import WIML from '../questions.json'
 
 
 const Tab1: React.FC = () => {
     const history = useHistory();
+
+    const keys = Object.keys(WIML.WIML);
 
     function sendHistory(type: string) {
         history.push({
@@ -22,18 +25,14 @@ const Tab1: React.FC = () => {
             </IonHeader>
             <IonContent fullscreen>
                 <div className="container">
-                    <IonButton onClick={() => sendHistory("Dirty")}>
-                        Dirty
-                    </IonButton>
-                    <IonButton onClick={() => sendHistory("Couples")}>
-                        Couples
-                    </IonButton>
-                    <IonButton onClick={() => sendHistory("Work")}>
-                        Work
-                    </IonButton>
-                    <IonButton onClick={() => sendHistory("Friends")}>
-                        Friends
-                    </IonButton>
+                    {keys.map((key, index) => {
+                        return (
+                            <IonButton key={key} onClick={() => sendHistory(key)}>
+                                {key}
+                            </IonButton>
+                        )
+                    }
+                    )}
                 </div>
             </IonContent>
         </IonPage>

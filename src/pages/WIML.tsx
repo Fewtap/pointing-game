@@ -1,14 +1,30 @@
 import { IonBackButton, IonCard, IonCardContent, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, createAnimation, IonButton } from "@ionic/react";
 import './WIML.css';
-import { Question } from "../interfaces";
-import questionsData from '../questions.json';
-import NHIEQuestions from '../NHIE.json';
 import { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router";
+import NHIEQuestionsData from '../NHIE.json';
+import WIMLQuestionsData from '../questions.json';
 
 const WIML: React.FC = () => {
+
+    interface NeverHaveIEverQuestions {
+        [key: string]: string[];
+    }
+    
+    interface WhoIsMostLikelyQuestions {
+        [key: string]: string[];
+    }
+    
+    interface QuestionsData {
+        neverHaveIEverQuestions: NeverHaveIEverQuestions;
+        whoIsMostLikelyQuestions: WhoIsMostLikelyQuestions;
+    }
+
+    const NHIEQuestions: NeverHaveIEverQuestions = NHIEQuestionsData.neverHaveIEverQuestions;
+    const WIMLQuestions: WhoIsMostLikelyQuestions = WIMLQuestionsData.WIML;
+
     const cardEl = useRef<HTMLIonCardElement | null>(null);
-    const [filteredQuestions, setFilteredQuestions] = useState<Question[] | string[]>([]);
+    const [filteredQuestions, setFilteredQuestions] = useState<string[]>([]);
     const [questionIndex, setQuestionIndex] = useState(0);
 
     const { type, game } = useParams<{ type?: string, game?: string }>();
@@ -21,24 +37,18 @@ const WIML: React.FC = () => {
     }
 
     useEffect(() => {
-    if (game === "WIML") {
-        if (type) {
-            let filteredQuestions = questionsData.items.filter(question => question.category.includes(type));
-            shuffleArray(filteredQuestions);
-            setFilteredQuestions(filteredQuestions);
-        } else {
-            setFilteredQuestions([]);
+        if (game === "NHIE" && type && type in NHIEQuestions) {
+            const questions = NHIEQuestions[type];
+            shuffleArray(questions);
+            setFilteredQuestions(questions);
+        } else if (game === "WIML" && type && type in WIMLQuestions) {
+            const questions = WIMLQuestions[type];
+            shuffleArray(questions);
+            setFilteredQuestions(questions);
         }
-    } else if (game === "NHIE") {
-        if (type && typeof type === 'string') {
-            let filteredQuestions = NHIEQuestions.neverHaveIEverQuestions[type as keyof typeof NHIEQuestions.neverHaveIEverQuestions] || [];
-            shuffleArray(filteredQuestions);
-            setFilteredQuestions(filteredQuestions);
-        } else {
-            setFilteredQuestions([]);
-        }
-    }
-}, [type, game]);
+
+        console.log(type);
+    }, [type, game]);
 
     const nextQuestion = () => {
         const hideAnim = createAnimation()
@@ -64,7 +74,7 @@ const WIML: React.FC = () => {
                 <IonToolbar>
                     <div className="flex">
                         <IonBackButton mode="md" />
-                        <IonTitle>{`WIML ${type ?? 'Default'}`}</IonTitle>
+                        <IonTitle>{game == "WIML" ? "Who is more likely " + type : game == "NHIE" ? "Never have i ever " + type : ""}</IonTitle>
                     </div>
                 </IonToolbar>
             </IonHeader>
@@ -96,10 +106,7 @@ const WIML: React.FC = () => {
                             transition: "all 0.3s ease-in-out",
                         }}>
                             <IonCardContent>
-                                <h1>{typeof filteredQuestions[questionIndex] === 'string' 
-                                    ? filteredQuestions[questionIndex] 
-                                    : filteredQuestions[questionIndex].content}
-                                </h1>
+                                <h1>{filteredQuestions[questionIndex]}</h1>
                             </IonCardContent>
                         </IonCard>
                         <IonButton onClick={nextQuestion}>Next Question</IonButton>
