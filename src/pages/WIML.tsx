@@ -54,7 +54,7 @@ const WIML: React.FC = () => {
         const hideAnim = createAnimation()
             .addElement(cardEl.current!)
             .duration(300)
-            .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+            .fromTo('transform', 'translateX(0px)', 'translateX(-100px)')
             .fromTo('opacity', '1', '0');
 
         hideAnim.play().then(() => {
@@ -62,7 +62,7 @@ const WIML: React.FC = () => {
             const showAnim = createAnimation()
                 .addElement(cardEl.current!)
                 .duration(300)
-                .fromTo('transform', 'translateX(-100px)', 'translateX(0px)')
+                .fromTo('transform', 'translateX(100px)', 'translateX(0px)')
                 .fromTo('opacity', '0', '1');
             showAnim.play();
         });
