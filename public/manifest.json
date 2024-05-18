@@ -1,6 +1,6 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "Drinking Game",
+  "name": "A Drinking Game",
   "icons": [
     {
       "src": "assets/icon/favicon.png",

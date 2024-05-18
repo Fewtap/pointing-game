@@ -37,6 +37,7 @@ const WIML: React.FC = () => {
         }
     }
 
+    //Check which game is selected and if the type is in the questions data
     useEffect(() => {
         if (game === "NHIE" && type && type in NHIEQuestions) {
             const questions = NHIEQuestions[type];
@@ -49,6 +50,12 @@ const WIML: React.FC = () => {
         }
     }, [type, game]);
 
+
+    /**
+     * Function to show the next question
+     * It will hide the current question and show the next one after a short delay
+     * 
+     */
     const nextQuestion = () => {
         setShowQuestion(false);
         setTimeout(() => {
