@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonImg, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab3.css';
 
@@ -26,7 +26,9 @@ const Tab3: React.FC = () => {
           <img style={{
             height: '25%',
             borderRadius: '50%',
-          }} src='../resources/icon.png'></img>
+          }}
+          
+          src="/assets/images/image.png"></img>
           <h1>About Page</h1>
           <p>This is a simple app that allows you to play a couple of drinking games with your friends.</p>
           <h5>Thanks to:</h5>
